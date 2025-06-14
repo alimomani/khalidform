@@ -9,21 +9,21 @@
       font-family: 'Tahoma', sans-serif;
       padding: 15px;
       direction: rtl;
-      font-size: 13px; /* Reduced from default 16px */
+      font-size: 13px;
     }
     table, th, td {
       border: 1px solid black;
       border-collapse: collapse;
-      padding: 6px; /* Reduced from 10px */
+      padding: 6px;
       text-align: right;
       font-size: 13px;
     }
     h2 {
-      font-size: 18px; /* Reduced */
+      font-size: 18px;
       margin: 10px 0;
     }
     h3 {
-      font-size: 16px; /* Reduced */
+      font-size: 16px;
       margin: 8px 0;
     }
     p {
@@ -33,56 +33,77 @@
     }
     input, textarea {
       width: 90%;
-      padding: 6px; /* Reduced from 8px */
+      padding: 6px;
       text-align: right;
       border: 1px solid #ddd;
       border-radius: 4px;
-      font-size: 13px; /* Reduced from 16px */
+      font-size: 13px;
     }
     .label {
       display: inline-block;
-      margin-left: 8px; /* Reduced from 10px */
+      margin-left: 8px;
       font-weight: bold;
-      font-size: 13px; /* Reduced from 16px */
+      font-size: 13px;
     }
     button {
-      padding: 8px 16px; /* Reduced from 12px 24px */
+      padding: 8px 16px;
       background-color: #4CAF50;
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
-      font-size: 13px; /* Reduced from 16px */
-      margin: 15px auto; /* Reduced from 20px */
+      font-size: 13px;
+      margin: 15px auto;
       display: block;
     }
     #formArea {
-      max-width: 850px; /* Slightly reduced */
+      max-width: 850px;
       margin: 0 auto;
-      padding: 15px; /* Reduced from 20px */
+      padding: 15px;
       border: 1px solid #eee;
       border-radius: 5px;
       background-color: #f9f9f9;
       direction: rtl;
+      position: relative;
+      padding-bottom: 100px;
     }
     .print-value {
       display: inline-block;
-      min-width: 130px; /* Reduced from 150px */
+      min-width: 130px;
       border-bottom: 1px solid #000;
-      padding: 3px; /* Reduced from 5px */
-      margin-right: 3px; /* Reduced from 5px */
-      font-size: 13px; /* Reduced from 16px */
+      padding: 3px;
+      margin-right: 3px;
+      font-size: 13px;
     }
     #hiddenContainer {
       display: none;
     }
-    /* Specific adjustments for signature areas */
-    .signature-cell {
-      font-size: 12px !important; /* Smaller for signatures */
-      padding: 4px !important;
+    
+    /* تنسيقات الفوتر الجديدة */
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
     }
-    .approval-cell {
-      font-size: 14px !important; /* Slightly larger for "يعتمد" */
+    .signature-block {
+      display: inline-block;
+      width: 30%;
+      margin: 0 1%;
+      vertical-align: top;
+      text-align: center;
+    }
+    .approval-block {
+      display: inline-block;
+      width: 30%;
+      margin: 0 1%;
+      font-size: 16px;
+      font-weight: bold;
+      padding-top: 15px;
+    }
+    .signature-name {
+      font-size: 12px;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -128,19 +149,20 @@
   <p style="text-align: right; margin-bottom: 3px;">ملاحظات :</p>
   <textarea rows="3" id="notes" style="width: 100%; font-size:13px;"></textarea>
 
-  <table style="width:100%; margin-top:20px;">
-    <tr>
-      <td style="text-align:center; width:33%;" class="signature-cell">
-        كبير المعلمين<br />ملازم<br />خالد علي المؤمنـي
-      </td>
-      <td style="text-align:center; width:34%;" class="approval-cell">
-        يعتمد
-      </td>
-      <td style="text-align:center; width:33%;" class="signature-cell">
-        المقدم /<br />قائد كتيبة موسيقى القوات المسلحة<br />عيسى ربيعه حمد العجلان الكعبي
-      </td>
-    </tr>
-  </table>
+  <!-- الفوتر الجديد بدون خطوط توقيع -->
+  <div class="footer">
+    <div class="signature-block">
+      <div class="signature-name">كبير المعلمين<br />ملازم<br />خالد علي المومنـي</div>
+    </div>
+    
+    <div class="approval-block">
+      يعتمد
+    </div>
+    
+    <div class="signature-block">
+      <div class="signature-name">المقدم /<br />قائد كتيبة موسيقى القوات المسلحة<br />عيسى ربيعه حمد العجلان الكعبي</div>
+    </div>
+  </div>
 </div>
 
 <button onclick="generatePDF()">📥 تحميل PDF</button>
@@ -182,7 +204,7 @@ function generatePDF() {
 
   // إعدادات PDF
   const opt = {
-    margin: 8, /* Reduced from 10 */
+    margin: 8,
     filename: 'نموذج_تقييم_مدرب_موسيقى.pdf',
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2 },
